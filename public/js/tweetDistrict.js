@@ -1,4 +1,3 @@
-
 //linkifies text
 function linkify (inputText) {
     var replacedText, replacePattern1, replacePattern2, replacePattern3;
@@ -31,22 +30,22 @@ $(function () {
         $.getJSON(
             "/tw",
 
-            { 	
+            {   
                 geoSearchWord: $("#searchme").val(),
-            	geoSearchWordLat: userLat,
+                geoSearchWordLat: userLat,
                 geoSearchWordLon: userLon,
                 geoSearchWordRad: $("#searchRadius").val()
-        	}
+            }
 
         ).done(function (result) {
-        	$("#fromTweets").empty();  
+            $("#fromTweets").empty();  
             $("#tweetClear").remove(); 
 
             if (result.statuses.length == 0) {
                 noTweetsFoundAppend();
             }
 
-        	for (i = 0; i < result.statuses.length; i++) {
+            for (i = 0; i < result.statuses.length; i++) {
                 var userPostedImage = "";
                 var userLatLonInput = "";
                 var userURL = '<a href="https://twitter.com/' + result.statuses[i].user.screen_name + '" class="nav-link">'
@@ -55,13 +54,13 @@ $(function () {
 
 
 
-        		if (result.statuses[i].geo !== null) {
+                if (result.statuses[i].geo !== null) {
                     //Print out the geolocation && Drop Marker
                     LatValue = parseFloat(result.statuses[i].geo.coordinates[0]);
                     LonValue = parseFloat(result.statuses[i].geo.coordinates[1]);
-					userLatLonInput = ", Lat: " + LatValue + " Lon: " + LonValue;
+                    userLatLonInput = ", Lat: " + LatValue + " Lon: " + LonValue;
                     newMarkerDrop();
-        		}
+                }
 
                 if (result.statuses[i].entities.media !== undefined) {
 
@@ -71,7 +70,7 @@ $(function () {
                 $("#fromTweets").append('<div class="panel tweet-inputs">' + '<img src="' + userImage + '"">' + userURL + result.statuses[i].user.screen_name + '</a>' + 
                     '<p class="tweet-text-input">' + linkifiedText + '</p>' + '<br/>' +
                     '<p class="tweet-text-time">' + result.statuses[i].created_at + userLatLonInput + '</p>' + userPostedImage + '</div> ')
-        	}
+            }
 
             zoomToLastMarker();
         });
@@ -88,14 +87,14 @@ $(function () {
             }
 
         ).done(function (result) {
-        	$("#fromCategories").empty();
-        	for (i = 0; i < result.users.length; i++) {
-				$("#fromCategories").append('<b>' + "Username: " + '</b>' + result.users[i].screen_name + '<br/>');
-				$("#fromCategories").append('<b>' + "Description: " + '</b>' + result.users[i].description + '<br/>');
-				$("#fromCategories").append('<b>' + "Number of Followers: " + '</b>' + result.users[i].followers_count + '<br/>' + '<br/>');
-        	}
+            $("#fromCategories").empty();
+            for (i = 0; i < result.users.length; i++) {
+                $("#fromCategories").append('<b>' + "Username: " + '</b>' + result.users[i].screen_name + '<br/>');
+                $("#fromCategories").append('<b>' + "Description: " + '</b>' + result.users[i].description + '<br/>');
+                $("#fromCategories").append('<b>' + "Number of Followers: " + '</b>' + result.users[i].followers_count + '<br/>' + '<br/>');
+            }
         });
-    });	
+    }); 
 
 
 
