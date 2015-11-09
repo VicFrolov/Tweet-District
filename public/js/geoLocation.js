@@ -1,6 +1,3 @@
-// var lat = document.getElementById("searchLat");
-// var lon = document.getElementById("searchLon");
-
 // document.getElementById("geoCheckBox").onclick = function() {
 //     lat.value = "Please wait...";
 //     lon.value = "Loading location..."

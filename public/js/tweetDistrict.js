@@ -51,7 +51,6 @@ $(function () {
                 var userLatLonInput = "";
                 var userURL = '<a href="https://twitter.com/' + result.statuses[i].user.screen_name + '" class="nav-link">'
                 var linkifiedText = linkify(result.statuses[i].text);
-
                 var userImage = result.statuses[i].user.profile_image_url_https;
 
 
@@ -65,7 +64,6 @@ $(function () {
         		}
 
                 if (result.statuses[i].entities.media !== undefined) {
-
 
 
                 }
