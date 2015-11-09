@@ -1,0 +1,26 @@
+{
+  "name": "tweetdistrict",
+  "version": "1.0.0",
+  "description": "search for tweets based on location and keyword searches",
+  "main": "index.js",
+  "engines": {
+    "node": "4.1.2"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "www.github.com/vicfrolov/cmsi370/front-end"
+  },
+  "keywords": [
+    "twitter",
+    "search"
+  ],
+  "author": "Victor Frolov",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

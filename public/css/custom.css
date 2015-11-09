@@ -1,0 +1,300 @@
+.navbar-inverse {
+	background-image: linear-gradient(to bottom,#ffffff 0,#ffffff 100%);
+    border-color:#E4ECF2;
+    opacity: 0.95;
+    font-size:14px;
+
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+    text-shadow: 0 0px 0 rgba(0,0,0,.25);
+}
+	
+
+/*next two are for navbar links + hover*/
+.navbar-inverse .navbar-nav>li>a {
+	color:#838994;
+	padding-top:28px;
+	padding-bottom:25px;
+	font-size: 15px;
+    line-height: 1.4444;
+	letter-spacing:-0.5px;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+    color: #333;
+}
+
+
+/*Next two are for navbarbrand + navbarbrand hover*/
+.navbar-inverse .navbar-brand {
+	color:#FE471A;
+	padding-top:25px;
+	padding-bottom:25px;
+	padding-left:120px;
+	font-size:18px;	
+}
+
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+    color: #FE471A;
+}
+
+.navbar-inverse .navbar-brand {
+    font-weight: 700;
+    font-family: Lobster, cursive;
+}
+
+
+.navbar-brand-img {
+	padding-top:15px;
+	padding-bottom:10px;
+	margin-right:40px;
+	max-height:80px;
+	max-width:80px;
+}
+
+/*jumbotron background and padding*/
+.jumbotron {
+    position: relative;
+    background: #000 url("../images/cover.jpg") center center;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    color: #FFFFFF;
+    overflow: hidden;
+    margin-bottom:0px;
+    border-radius: 0 !important;
+
+}
+
+.jumbotron-overlay {
+    background-color: rgba(44, 62, 80, 0.3);
+    background-image: url("../images/pattern.png");
+    background-repeat: repeat;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+    color:#ffffff;
+    opacity: 0.7;
+}
+
+.jumbotron h1 {
+
+	text-align:left;
+	padding-top:400px;
+    color: #ffffff;
+    letter-spacing: 1px;	
+}
+
+
+.jumbotron h4 {
+	text-align:left;
+	margin-bottom:5%;
+	font-weight:normal;
+	letter-spacing:1px;
+	line-height: 20px;
+	margin-right:15%;
+	padding-left: 1%;
+}
+
+.jumbotron h5 {
+	margin-top:40px;
+	margin-right:  0px;
+    color: #ffffff;
+    text-align:left;
+    letter-spacing:-0.5px;
+	line-height: 20px;
+}
+
+.row .btn-group {
+    margin-top: 24px;
+}
+
+.row-custom {
+    padding-bottom:10px;
+}
+
+#tweetCategories, #tweetsTrending, #FAQ {
+    padding-top: 60px;
+    color:rgba(51,166,204, 1);
+}
+
+/*Jump to the proper location when clicking on Show Tweets in*/
+#tweetsAroundMe {
+    padding-top:74px;
+}
+#map-canvas {
+    max-height: 450px;
+    min-height: 450px;
+    max-width: 600px;
+}
+
+/*panels for tweets*/
+.no-overflow {
+    padding-top:0px;
+    padding-left:0px;
+    padding-right:0px;
+    overflow: hidden;
+    max-height: 450px;
+    min-height: 450px;
+    overflow-y:auto;
+    border-color:#D3D3D3;
+    background-color: rgba(184,184,184, 0.1);
+
+}
+
+.tweet-inputs {
+    padding-top:15px;
+    padding-left:15px;
+    padding-right:15px;
+    padding-bottom:15px;
+    margin-bottom:10px;
+/*    background-color: rgba(184,184,184, 0.1);
+*/}
+
+#accordion {
+    margin-bottom:450px;
+}
+
+.container.odd {
+    background-color: #dddddd;
+}
+
+/*
+
+NAVLINKS
+*/
+
+a.nav-link:link
+{
+   color: #0074D9;
+   text-decoration: none;
+}
+a.nav-link:visited
+{
+   color: #7FDBFF;
+   text-decoration: none;
+}
+
+a.nav-link:hover
+{
+   color: #d78f7e;
+   text-decoration: none;
+}
+a.nav-link:active
+{
+   color: #ccc;
+   text-decoration: none;
+}
+
+
+p.tweet-text-input {
+
+    margin-right:10px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 12px;
+
+}
+p.tweet-text-time {
+    margin-left:5px;
+    margin-right:10px;
+    margin-bottom: 0px;
+    font-size: 10px;
+}
+
+/*button*/
+
+.btn {
+    padding: 8px 20px;
+    border: 0 none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: #0099cc;
+    color: #ffffff;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
+
+.form-control:focus {
+  border-color: #d78f7e;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+
+/*containers labeled odd will get this background color*/
+.odd {
+   background-color: rgba(51,166,204, 0.5);
+}
+
+.groupInputTweets {
+	padding-bottom:5px;
+	padding-top:5px;
+	padding-left:10px;
+	padding-right:10px;
+	border-color:#D3D3D3;
+	margin-bottom: 0px;
+}
+
+/*
+//
+    Panel for Tweets + css for their appearance
+    next three are in charge of tweet header and tagline
+//
+*/
+
+
+
+.tweetsIntroP {
+    margin-top:0px;
+    margin-bottom:0px;
+    background-color: #33a6cc;
+}
+
+.tweetHeader {
+    font-size:40px;
+    color:white;
+    letter-spacing:10px;
+    margin-bottom: 0px;
+    padding-left:10px;
+}
+
+.tweetTagline {
+    padding-left:40px;
+    font-size:20px;
+    color:#dddddd;
+    letter-spacing:5px;
+}
+
+#search-button {
+    margin-top:23px;
+}
+
+.tweetSearchIntroParagraph {
+    margin-top:10px;
+}
+
+#geoCheckBox {
+    margin-left:3px;
+}
+
+#feedback {
+    color:red;
+}
