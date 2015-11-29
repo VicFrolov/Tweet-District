@@ -7,10 +7,10 @@ var geoDecodedAddress;
 //Load map function
 var map;
 function initMap() {
-	map = new google.maps.Map(document.getElementById('map-canvas'), {
-    	center: {lat: 30.363, lng: -118.044},
-    	zoom: 3
-	});
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
+        center: {lat: 30.363, lng: -118.044},
+        zoom: 3
+    });
 }
 
 
@@ -84,7 +84,3 @@ function showPosition(position) {
     userLon = position.coords.longitude;
     getReverseGeocodingData(userLat, userLon)
 }
-
-
-
-

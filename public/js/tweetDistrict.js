@@ -97,7 +97,6 @@ $(function () {
     }); 
 
 
-
     $("#search-button-trending").click(function () {
         $.getJSON(
             "/trendstw",
