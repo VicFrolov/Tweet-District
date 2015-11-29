@@ -60,8 +60,6 @@ function getReverseGeocodingData(lat, lng) {
         }
         // This is checking to see if the Geoeode Status is OK before proceeding
         if (status == google.maps.GeocoderStatus.OK) {
-            // console.log(results)
-
             //show address in textbox
             locationSearch.value = (results[0].formatted_address);
         }
@@ -82,5 +80,5 @@ document.getElementById("geoCheckBox").onclick = function() {
 function showPosition(position) { 
     userLat = position.coords.latitude;
     userLon = position.coords.longitude;
-    getReverseGeocodingData(userLat, userLon)
+    getReverseGeocodingData(userLat, userLon);
 }

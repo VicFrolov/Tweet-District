@@ -48,11 +48,9 @@ $(function () {
             for (i = 0; i < result.statuses.length; i++) {
                 var userPostedImage = "";
                 var userLatLonInput = "";
-                var userURL = '<a href="https://twitter.com/' + result.statuses[i].user.screen_name + '" class="nav-link">'
+                var userURL = '<a href="https://twitter.com/' + result.statuses[i].user.screen_name + '" class="nav-link">';
                 var linkifiedText = linkify(result.statuses[i].text);
                 var userImage = result.statuses[i].user.profile_image_url_https;
-
-
 
                 if (result.statuses[i].geo !== null) {
                     //Print out the geolocation && Drop Marker
@@ -63,13 +61,13 @@ $(function () {
                 }
 
                 if (result.statuses[i].entities.media !== undefined) {
-
+                    //add media functionality to tweet inserts(images)
 
                 }
                 //Print out username and status
                 $("#fromTweets").append('<div class="panel tweet-inputs">' + '<img src="' + userImage + '"">' + userURL + result.statuses[i].user.screen_name + '</a>' + 
                     '<p class="tweet-text-input">' + linkifiedText + '</p>' + '<br/>' +
-                    '<p class="tweet-text-time">' + result.statuses[i].created_at + userLatLonInput + '</p>' + userPostedImage + '</div> ')
+                    '<p class="tweet-text-time">' + result.statuses[i].created_at + userLatLonInput + '</p>' + userPostedImage + '</div> ');
             }
 
             zoomToLastMarker();
