@@ -1,4 +1,3 @@
-var userAddress;
 var userLat;
 var userLon;
 var newMarker;
@@ -6,7 +5,7 @@ var geoDecodedAddress;
 
 //Load map function
 var map;
-function initMap() {
+var initMap = function () {
     map = new google.maps.Map(document.getElementById('map-canvas'), {
         center: {lat: 30.363, lng: -118.044},
         zoom: 3
@@ -15,20 +14,20 @@ function initMap() {
 
 
 //autocomplete geocoder
-function initilize() {
+var initilize = function () {
     google.maps.event.addDomListener(window, 'load', initilize);
     var autocomplete = new google.maps.places.Autocomplete(document.getElementById('locationSearch'));
 
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
         var place = autocomplete.getPlace();
-        userAddress = place.formatted_address;
+        var userAddress = place.formatted_address;
         userLat = place.geometry.location.lat();
         userLon = place.geometry.location.lng();
     });
 };
 
 
-function newMarkerDrop() {
+var newMarkerDrop = function () {
     myLatLng = {lat: LatValue, lng: LonValue};
     newMarker = new google.maps.Marker({
         position: myLatLng,
@@ -37,20 +36,22 @@ function newMarkerDrop() {
     });
 }
 
-function zoomToLastMarker() {
+var zoomToLastMarker = function () {
     map.setZoom(12);
     map.panTo(newMarker.position);
 }
 
 //GEOCODING ACTION
-document.getElementById('locationSearch').onclick = function () {
+
+$("#locationSearch").click(function () {
     if(!$("#geoCheckBox").is(":checked")) {
         initilize();
     }
-}
+});
+
 
 //GEODECODING ACTION
-function getReverseGeocodingData(lat, lng) {
+var getReverseGeocodingData = function (lat, lng) {
     var latlng = new google.maps.LatLng(lat, lng);
     // This is making the Geocode request
     var geocoder = new google.maps.Geocoder();
@@ -68,16 +69,18 @@ function getReverseGeocodingData(lat, lng) {
 
 
 // LAT / LON REQUEST
-document.getElementById("geoCheckBox").onclick = function () {
+
+$("#geoCheckBox").click(function () {
     locationSearch.value = "Please wait...";
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
         x.value = "Not supported by browser.";
     }
-}
+});
 
-function showPosition(position) { 
+
+var showPosition = function (position) { 
     userLat = position.coords.latitude;
     userLon = position.coords.longitude;
     getReverseGeocodingData(userLat, userLon);

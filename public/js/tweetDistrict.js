@@ -1,5 +1,5 @@
 //linkifies text
-function linkify (inputText) {
+var linkify = function (inputText) {
     var replacedText, replacePattern1, replacePattern2, replacePattern3;
 
     //URLs starting with http://, https://, or ftp://
@@ -18,7 +18,7 @@ function linkify (inputText) {
 }
 
 
-function noTweetsFoundAppend() {
+var noTweetsFoundAppend = function () {
     return $("#fromTweets").append('<div class="panel tweet-inputs">' + '<p class="tweet-text-input">' + "Sorry, no tweets found" + '</p>' + '</div>')
 }
 
