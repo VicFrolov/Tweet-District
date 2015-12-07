@@ -19,7 +19,7 @@ function initilize() {
     google.maps.event.addDomListener(window, 'load', initilize);
     var autocomplete = new google.maps.places.Autocomplete(document.getElementById('locationSearch'));
 
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
         var place = autocomplete.getPlace();
         userAddress = place.formatted_address;
         userLat = place.geometry.location.lat();
@@ -43,7 +43,7 @@ function zoomToLastMarker() {
 }
 
 //GEOCODING ACTION
-document.getElementById('locationSearch').onclick = function() {
+document.getElementById('locationSearch').onclick = function () {
     if(!$("#geoCheckBox").is(":checked")) {
         initilize();
     }
@@ -59,7 +59,7 @@ function getReverseGeocodingData(lat, lng) {
             alert(status);
         }
         // This is checking to see if the Geoeode Status is OK before proceeding
-        if (status == google.maps.GeocoderStatus.OK) {
+        if (status === google.maps.GeocoderStatus.OK) {
             //show address in textbox
             locationSearch.value = (results[0].formatted_address);
         }
@@ -68,7 +68,7 @@ function getReverseGeocodingData(lat, lng) {
 
 
 // LAT / LON REQUEST
-document.getElementById("geoCheckBox").onclick = function() {
+document.getElementById("geoCheckBox").onclick = function () {
     locationSearch.value = "Please wait...";
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);

@@ -41,7 +41,7 @@ $(function () {
             $("#fromTweets").empty();  
             $("#tweetClear").remove(); 
 
-            if (result.statuses.length == 0) {
+            if (result.statuses.length === 0) {
                 noTweetsFoundAppend();
             }
 
