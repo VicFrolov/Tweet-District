@@ -5,13 +5,9 @@ $(function () {
     var map;
 
     $("#search-button").click(function () {
-            console.log($("#searchRadius").val());
-
         if ($("#searchRadius").val() === "0mi") {
-            validLocationRequestMessage();
-            $("#tweetClear").fadeOut("5000");
+            invalidLocationMessage();
         } else {
-
             $.getJSON(
                 "/tw",
 
@@ -203,8 +199,10 @@ $(function () {
             "Sorry, no tweets found" + '</p>' + '</div>');
     }
 
-    var validLocationRequestMessage = function () {
-        return $("#fromTweets").append('<div class="panel tweet-alert">' + '<p class="tweet-text-input">' + 
-            "Please Enter a valid location, and Radius." + '</p>' + '</div>');
+    var invalidLocationMessage = function () {
+
+        $("#fromTweets").empty();  
+        return $("#fromTweets   ").append('<div class="panel tweet-alert">' + '<p class="tweet-text-input">' + 
+            "Please Enter a valid location, and Radius." + '</p>' + '</div>').fadeIn("slow").delay(2000).fadeOut("slow");
     } 
 });
