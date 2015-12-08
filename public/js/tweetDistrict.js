@@ -4,7 +4,7 @@ $(function () {
     var newMarker;
     var map;
 
-    $("#search-button").click(function() {
+    $("#search-button").click(function () {
 
         $.getJSON(
             "/tw",
@@ -56,7 +56,7 @@ $(function () {
     });
 
 
-    $("#search-button-slug").click(function() {
+    $("#search-button-slug").click(function () {
         $.getJSON(
 
             "/funnytw",
@@ -87,7 +87,7 @@ $(function () {
 
         ).done(function (result) {
             $("#fromTrending").empty();
-            for( i = 0; i < result[0].trends.length; i++) {
+            for ( i = 0; i < result[0].trends.length; i++) {
                 $("#fromTrending").append('<b>' + "Trending: " + '</b>' + result[0].trends[i].name + '<br/>');
                 $("#fromTrending").append('<b>' + "Link: " + '</b>' + result[0].trends[i].url + '<br/>' + '<br/>' );
             }
