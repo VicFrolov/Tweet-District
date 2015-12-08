@@ -15,8 +15,9 @@ var T = new Twit({
 // get based on search term, count, location, etc
 //
 app.get('/tw', function (req, res) {
-    T.get('search/tweets', { q: req.query.geoSearchWord, count: 100, geocode: [ req.query.geoSearchWordLat, req.query.geoSearchWordLon , req.query.geoSearchWordRad ]}, function(err, data, response) {
-        res.send(data);
+    T.get('search/tweets', { q: req.query.geoSearchWord, count: 100, geocode: [ req.query.geoSearchWordLat
+        , req.query.geoSearchWordLon , req.query.geoSearchWordRad ]}, function(err, data, response) {
+            res.send(data);
     });
 });
 

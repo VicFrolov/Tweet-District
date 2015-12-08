@@ -19,7 +19,8 @@ var linkify = function (inputText) {
 
 
 var noTweetsFoundAppend = function () {
-    return $("#fromTweets").append('<div class="panel tweet-inputs">' + '<p class="tweet-text-input">' + "Sorry, no tweets found" + '</p>' + '</div>')
+    return $("#fromTweets").append('<div class="panel tweet-inputs">' + '<p class="tweet-text-input">' + 
+        "Sorry, no tweets found" + '</p>' + '</div>')
 }
 
 
@@ -48,7 +49,8 @@ $(function () {
             for (i = 0; i < result.statuses.length; i++) {
                 var userPostedImage = "";
                 var userLatLonInput = "";
-                var userURL = '<a href="https://twitter.com/' + result.statuses[i].user.screen_name + '" class="nav-link">';
+                var userURL = '<a href="https://twitter.com/' + result.statuses[i].user.screen_name + 
+                    '" class="nav-link">';
                 var linkifiedText = linkify(result.statuses[i].text);
                 var userImage = result.statuses[i].user.profile_image_url_https;
 
@@ -65,9 +67,10 @@ $(function () {
 
                 }
                 //Print out username and status
-                $("#fromTweets").append('<div class="panel tweet-inputs">' + '<img src="' + userImage + '"">' + userURL + result.statuses[i].user.screen_name + '</a>' + 
-                    '<p class="tweet-text-input">' + linkifiedText + '</p>' + '<br/>' +
-                    '<p class="tweet-text-time">' + result.statuses[i].created_at + userLatLonInput + '</p>' + userPostedImage + '</div> ');
+                $("#fromTweets").append('<div class="panel tweet-inputs">' + '<img src="' + userImage + '"">' + 
+                    userURL + result.statuses[i].user.screen_name + '</a>' + '<p class="tweet-text-input">' + 
+                    linkifiedText + '</p>' + '<br/>' +'<p class="tweet-text-time">' + result.statuses[i].created_at + 
+                    userLatLonInput + '</p>' + userPostedImage + '</div> ');
             }
 
             zoomToLastMarker();
@@ -89,7 +92,8 @@ $(function () {
             for (i = 0; i < result.users.length; i++) {
                 $("#fromCategories").append('<b>' + "Username: " + '</b>' + result.users[i].screen_name + '<br/>');
                 $("#fromCategories").append('<b>' + "Description: " + '</b>' + result.users[i].description + '<br/>');
-                $("#fromCategories").append('<b>' + "Number of Followers: " + '</b>' + result.users[i].followers_count + '<br/>' + '<br/>');
+                $("#fromCategories").append('<b>' + "Number of Followers: " + '</b>' + result.users[i].followers_count +
+                 '<br/>' + '<br/>');
             }
         });
     }); 
