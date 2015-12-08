@@ -117,6 +117,9 @@ $(function () {
         });
     };
 
+    //activate geocoding on box click
+    $("#searchme").click(initilize());
+
 
     var newMarkerDrop = function () {
         myLatLng = {lat: LatValue, lng: LonValue};
