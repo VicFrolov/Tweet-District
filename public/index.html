@@ -74,7 +74,7 @@
     <div class="container">      
       <div class="panel groupInputTweets"> 
         <p class="tweetSearchIntroParagraph"> Below is a stream of all tweets from the location of your choosing. Please
-          enter any location on the planet, an optional search word, and a radius! </p> 
+          enter any location on the planet, an optional search word, and a radius (default is 1 mile)! </p> 
 
         <div class="row">
           <div class="col-lg-3 col-md-3 col-xs-6 col-sm-3">
@@ -89,6 +89,7 @@
             <div class="form-group">
               <label for="sel1">Radius</label>
               <select class="form-control" id="searchRadius">
+                <option value="0mi">Choose</option>
                 <option value="1mi">1 Mile</option>
                 <option value="5mi">5 Miles</option>
                 <option value="10mi">10 Miles</option>
