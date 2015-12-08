@@ -95,7 +95,6 @@ $(function () {
     });
 
 
-    //Load map function
     var initMap = function () {
         map = new google.maps.Map(document.getElementById('map-canvas'), {
             center: {lat: 30.363, lng: -118.044},
@@ -103,6 +102,7 @@ $(function () {
         });
     }
     initMap();
+
 
     //autocomplete geocoder
     var initilize = function () {
@@ -134,8 +134,6 @@ $(function () {
 
 
 
-
-    //GEODECODING ACTION
     var getReverseGeocodingData = function (lat, lng) {
         var latlng = new google.maps.LatLng(lat, lng);
         // This is making the Geocode request
@@ -153,7 +151,7 @@ $(function () {
     }
 
 
-    // LAT / LON REQUEST
+    // Lat/Lon search and input, along with greyeing out box when checked, clearing and ungreying when unchecked
     $("#geoCheckBox").click(function () {
         if (navigator.geolocation && $("#geoCheckBox").is(":checked")) {
             locationSearch.value = "Finding your location...";
