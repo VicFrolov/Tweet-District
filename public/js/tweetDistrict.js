@@ -4,33 +4,6 @@ $(function () {
     var newMarker;
     var map;
 
-    //linkifies text
-    var linkify = function (inputText) {
-        var replacedText, replacePattern1, replacePattern2, replacePattern3;
-
-        //URLs starting with http://, https://, or ftp://
-        replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-        replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
-
-        //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
-        replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-        replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
-
-        //Change email addresses to mailto:: links.
-        replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
-        replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
-
-        return replacedText;
-    }
-
-
-    var noTweetsFoundAppend = function () {
-        return $("#fromTweets").append('<div class="panel tweet-inputs">' + '<p class="tweet-text-input">' + 
-            "Sorry, no tweets found" + '</p>' + '</div>')
-    }
-
-
-
     $("#search-button").click(function() {
 
         $.getJSON(
@@ -122,86 +95,105 @@ $(function () {
     });
 
 
-//Load map function
-var initMap = function () {
-    map = new google.maps.Map(document.getElementById('map-canvas'), {
-        center: {lat: 30.363, lng: -118.044},
-        zoom: 3
-    });
-}
-initMap();
-
-//autocomplete geocoder
-var initilize = function () {
-    google.maps.event.addDomListener(window, 'load', initilize);
-    var autocomplete = new google.maps.places.Autocomplete(document.getElementById('locationSearch'));
-
-    google.maps.event.addListener(autocomplete, 'place_changed', function () {
-        var place = autocomplete.getPlace();
-        var userAddress = place.formatted_address;
-        userLat = place.geometry.location.lat();
-        userLon = place.geometry.location.lng();
-    });
-};
-
-
-var newMarkerDrop = function () {
-    myLatLng = {lat: LatValue, lng: LonValue};
-    newMarker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        animation: google.maps.Animation.DROP
-    });
-}
-
-var zoomToLastMarker = function () {
-    map.setZoom(12);
-    map.panTo(newMarker.position);
-}
-
-//GEOCODING ACTION
-$("#locationSearch").click(function () {
-    if(!$("#geoCheckBox").is(":checked")) {
-        initilize();
+    //Load map function
+    var initMap = function () {
+        map = new google.maps.Map(document.getElementById('map-canvas'), {
+            center: {lat: 30.363, lng: -118.044},
+            zoom: 3
+        });
     }
-});
+    initMap();
+
+    //autocomplete geocoder
+    var initilize = function () {
+        google.maps.event.addDomListener(window, 'load', initilize);
+        var autocomplete = new google.maps.places.Autocomplete(document.getElementById('locationSearch'));
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            var userAddress = place.formatted_address;
+            userLat = place.geometry.location.lat();
+            userLon = place.geometry.location.lng();
+        });
+    };
 
 
-//GEODECODING ACTION
-var getReverseGeocodingData = function (lat, lng) {
-    var latlng = new google.maps.LatLng(lat, lng);
-    // This is making the Geocode request
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-        if (status !== google.maps.GeocoderStatus.OK) {
-            alert(status);
-        }
-        // This is checking to see if the Geoeode Status is OK before proceeding
-        if (status === google.maps.GeocoderStatus.OK) {
-            //show address in textbox
-            locationSearch.value = (results[0].formatted_address);
-        }
-    });
-}
-
-
-// LAT / LON REQUEST
-$("#geoCheckBox").click(function () {
-    locationSearch.value = "Please wait...";
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        x.value = "Not supported by browser.";
+    var newMarkerDrop = function () {
+        myLatLng = {lat: LatValue, lng: LonValue};
+        newMarker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            animation: google.maps.Animation.DROP
+        });
     }
-});
 
-
-var showPosition = function (position) { 
-    userLat = position.coords.latitude;
-    userLon = position.coords.longitude;
-    getReverseGeocodingData(userLat, userLon);
-}
+    var zoomToLastMarker = function () {
+        map.setZoom(12);
+        map.panTo(newMarker.position);
+    }
 
 
 
+
+    //GEODECODING ACTION
+    var getReverseGeocodingData = function (lat, lng) {
+        var latlng = new google.maps.LatLng(lat, lng);
+        // This is making the Geocode request
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+            if (status !== google.maps.GeocoderStatus.OK) {
+                alert(status);
+            }
+            // This is checking to see if the Geoeode Status is OK before proceeding
+            if (status === google.maps.GeocoderStatus.OK) {
+                //show address in textbox
+                $("#locationSearch").val(results[0].formatted_address);
+            }
+        });
+    }
+
+
+    // LAT / LON REQUEST
+    $("#geoCheckBox").click(function () {
+        if (navigator.geolocation && $("#geoCheckBox").is(":checked")) {
+            locationSearch.value = "Finding your location...";
+            $("#locationSearch").attr('disabled','disabled');
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            $("#locationSearch").removeAttr('disabled').val('');
+            initilize();
+        }
+    });   
+
+
+    var showPosition = function (position) { 
+        userLat = position.coords.latitude;
+        userLon = position.coords.longitude;
+        getReverseGeocodingData(userLat, userLon);
+    }
+
+    //linkifies text
+    var linkify = function (inputText) {
+        var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+        //URLs starting with http://, https://, or ftp://
+        replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+        replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+
+        //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+        replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+        replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
+
+        //Change email addresses to mailto:: links.
+        replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+        replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
+
+        return replacedText;
+    }
+
+
+    var noTweetsFoundAppend = function () {
+        return $("#fromTweets").append('<div class="panel tweet-inputs">' + '<p class="tweet-text-input">' + 
+            "Sorry, no tweets found" + '</p>' + '</div>')
+    }    
 });
