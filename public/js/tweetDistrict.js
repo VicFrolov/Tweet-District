@@ -127,11 +127,11 @@ $(function () {
         });
     }
 
+
     var zoomToLastMarker = function () {
         map.setZoom(12);
         map.panTo(newMarker.position);
     }
-
 
 
     var getReverseGeocodingData = function (lat, lng) {
@@ -169,6 +169,7 @@ $(function () {
         userLon = position.coords.longitude;
         getReverseGeocodingData(userLat, userLon);
     }
+
 
     //linkifies text
     var linkify = function (inputText) {
