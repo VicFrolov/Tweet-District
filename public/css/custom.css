@@ -194,16 +194,6 @@ p.tweet-text-input {
     font-size: 12px;
 
 }
-
-.tweet-alert {
-    background-color: red;
-    padding-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-
-}
-
 p.tweet-text-time {
     margin-left: 5px;
     margin-right: 10px;

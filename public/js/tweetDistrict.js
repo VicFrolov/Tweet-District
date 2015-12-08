@@ -5,57 +5,54 @@ $(function () {
     var map;
 
     $("#search-button").click(function () {
-        if ($("#searchRadius").val() === "0mi") {
-            invalidLocationMessage();
-        } else {
-            $.getJSON(
-                "/tw",
 
-                {   
-                    geoSearchWord: $("#searchme").val(),
-                    geoSearchWordLat: userLat,
-                    geoSearchWordLon: userLon,
-                    geoSearchWordRad: $("#searchRadius").val()
+        $.getJSON(
+            "/tw",
+
+            {   
+                geoSearchWord: $("#searchme").val(),
+                geoSearchWordLat: userLat,
+                geoSearchWordLon: userLon,
+                geoSearchWordRad: $("#searchRadius").val()
+            }
+
+        ).done(function (result) {
+            $("#fromTweets").empty();  
+            $("#tweetClear").remove(); 
+
+            if (result.statuses.length === 0) {
+                noTweetsFoundAppend();
+            }
+
+            for (i = 0; i < result.statuses.length; i++) {
+                var userPostedImage = "";
+                var userLatLonInput = "";
+                var userURL = '<a href="https://twitter.com/' + result.statuses[i].user.screen_name + 
+                    '" class="nav-link">';
+                var linkifiedText = linkify(result.statuses[i].text);
+                var userImage = result.statuses[i].user.profile_image_url_https;
+
+                if (result.statuses[i].geo !== null) {
+                    //Print out the geolocation && Drop Marker
+                    LatValue = parseFloat(result.statuses[i].geo.coordinates[0]);
+                    LonValue = parseFloat(result.statuses[i].geo.coordinates[1]);
+                    userLatLonInput = ", Lat: " + LatValue + " Lon: " + LonValue;
+                    newMarkerDrop();
                 }
 
-            ).done(function (result) {
-                $("#fromTweets").empty();  
-                $("#tweetClear").remove(); 
+                if (result.statuses[i].entities.media !== undefined) {
+                    //add media functionality to tweet inserts(images)
 
-                if (result.statuses.length === 0) {
-                    noTweetsFoundAppend();
                 }
+                //Print out username and status
+                $("#fromTweets").append('<div class="panel tweet-inputs">' + '<img src="' + userImage + '"">' + 
+                    userURL + result.statuses[i].user.screen_name + '</a>' + '<p class="tweet-text-input">' + 
+                    linkifiedText + '</p>' + '<br/>' +'<p class="tweet-text-time">' + result.statuses[i].created_at + 
+                    userLatLonInput + '</p>' + userPostedImage + '</div> ');
+            }
 
-                for (i = 0; i < result.statuses.length; i++) {
-                    var userPostedImage = "";
-                    var userLatLonInput = "";
-                    var userURL = '<a href="https://twitter.com/' + result.statuses[i].user.screen_name + 
-                        '" class="nav-link">';
-                    var linkifiedText = linkify(result.statuses[i].text);
-                    var userImage = result.statuses[i].user.profile_image_url_https;
-
-                    if (result.statuses[i].geo !== null) {
-                        //Print out the geolocation && Drop Marker
-                        LatValue = parseFloat(result.statuses[i].geo.coordinates[0]);
-                        LonValue = parseFloat(result.statuses[i].geo.coordinates[1]);
-                        userLatLonInput = ", Lat: " + LatValue + " Lon: " + LonValue;
-                        newMarkerDrop();
-                    }
-
-                    if (result.statuses[i].entities.media !== undefined) {
-                        //add media functionality to tweet inserts(images)
-
-                    }
-                    //Print out username and status
-                    $("#fromTweets").append('<div class="panel tweet-inputs">' + '<img src="' + userImage + '"">' + 
-                        userURL + result.statuses[i].user.screen_name + '</a>' + '<p class="tweet-text-input">' + 
-                        linkifiedText + '</p>' + '<br/>' +'<p class="tweet-text-time">' + result.statuses[i].created_at + 
-                        userLatLonInput + '</p>' + userPostedImage + '</div> ');
-                }
-
-                zoomToLastMarker();
-            });
-        }
+            zoomToLastMarker();
+        });
     });
 
 
@@ -196,13 +193,6 @@ $(function () {
 
     var noTweetsFoundAppend = function () {
         return $("#fromTweets").append('<div class="panel tweet-inputs">' + '<p class="tweet-text-input">' + 
-            "Sorry, no tweets found" + '</p>' + '</div>');
-    }
-
-    var invalidLocationMessage = function () {
-
-        $("#fromTweets").empty();  
-        return $("#fromTweets   ").append('<div class="panel tweet-alert">' + '<p class="tweet-text-input">' + 
-            "Please Enter a valid location, and Radius." + '</p>' + '</div>').fadeIn("slow").delay(2000).fadeOut("slow");
-    } 
+            "Sorry, no tweets found" + '</p>' + '</div>')
+    }    
 });
