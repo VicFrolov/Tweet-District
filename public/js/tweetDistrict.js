@@ -196,6 +196,6 @@ $(function () {
 
     var noTweetsFoundAppend = function () {
         return $("#fromTweets").append('<div class="panel tweet-inputs">' + '<p class="tweet-text-input">' + 
-            "Sorry, no tweets found" + '</p>' + '</div>')
+            "Sorry, no tweets found" + '</p>' + '</div>');
     }    
 });
