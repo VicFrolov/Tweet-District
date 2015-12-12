@@ -1,7 +1,9 @@
 (function ($) {
-
     var deleteLi = function (element) {
         $(element).remove();
+    }
+    var highlight = function(element) {
+        $(element).css('background-color', 'yellow');
     }
 
     var consolePrint = function(value) {
@@ -86,6 +88,14 @@
         rightFunction(rightButton, listItem);              
     }
 
+    var appendLeftButton = function(element) {
+        var listItem = $(element);
+        listItem.prepend("<div class='left-button'> </div> ");
+        var leftButton = listItem.find(".left-button");  
+        leftFunction(leftButton, listItem);     
+    }   
+
+
     var rightFunction;
     var leftFunction;
 
@@ -96,19 +106,22 @@
         $(".right-button").text("TAP TO DELETE");
     }
 
-    var saveButton = function () {
+    var highlightButton = function (buttonSide, listItem) {
+        buttonSide.click(function () {
+            highlight(listItem);
+        });
+        $(".left-button").text("Highlight Me(forever)");
+    }
+
+    var saveButton = function() {
         //To be implemented
     }
 
-    var appendLeftButton = function(element) {
-        $(element).prepend("<div class='left-button'> </div> ");          
-    }       
-
-
+    
     $.fn.intelliswipe = function (options) {
         var def = {
             'right-function': deleteButton
-            ,'left-function': saveButton
+            ,'left-function': highlightButton
         };
 
         jQuery.extend(options, def);
