@@ -66,13 +66,14 @@ $(function () {
             }
 
         ).done(function (result) {
-            $("#fromCategories").empty();
+            $("list-container").empty();
             for (i = 0; i < result.users.length; i++) {
-                $("#fromCategories").append('<b>' + "Username: " + '</b>' + result.users[i].screen_name + '<br/>');
-                $("#fromCategories").append('<b>' + "Description: " + '</b>' + result.users[i].description + '<br/>');
-                $("#fromCategories").append('<b>' + "Number of Followers: " + '</b>' + result.users[i].followers_count +
-                 '<br/>' + '<br/>');
+                $("#item-list").append('<li>' +'<b>' + "Username: " + '</b>' + result.users[i].screen_name + '<br/>' +
+                    '<b>' + "Description: " + '</b>' + result.users[i].description + '<br/>' + 
+                    '<b>' + "Number of Followers: " + '</b>' + result.users[i].followers_count + '</li>');
             }
+
+            $("#item-list").intelliswipe();
         });
     }); 
 

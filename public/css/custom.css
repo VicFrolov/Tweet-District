@@ -289,3 +289,34 @@ p.tweet-text-time {
 #feedback {
     color: red;
 }
+
+
+/*intelliswipe widget css*/
+
+#list-container {
+    border: 1px solid black;
+    width: 400px;
+    height: 500px;
+    background-color: #F0F8FF;
+}
+
+.right-button {
+    background-color: red;
+    font-size: 20px;
+    padding-top:20px;
+    float: right;
+    margin-left: 5px;    
+}
+
+.left-button {
+    background-color: yellow;
+}
+
+#list-container li {
+    background-color: white;    
+    border: solid 1px;
+    border-color: black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}

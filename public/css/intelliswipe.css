@@ -1,0 +1,35 @@
+#list-container {
+    position: relative;
+    overflow-x: hidden;
+}
+
+@media screen and (max-device-width: 480px) {
+    body {
+        -webkit-text-size-adjust: none;
+    }
+}
+
+
+.right-button {
+    height: 100%;
+    width: 153px;
+}
+
+.left-button {
+    height: 100%;
+    width: 150px;
+    margin-right: 5px;
+    float: left;
+}
+
+
+#list-container ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+#list-container li {
+    overflow: hidden;
+    height: 150px;
+}
