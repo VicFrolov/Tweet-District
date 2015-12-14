@@ -23,8 +23,9 @@
                 target.lastOffSetX = touch.pageX - target.deltaX
             }
         });
+        event.preventDefault();
     }
-    
+
     var endSlide = function (event) {
         $.each(event.changedTouches, function (index, touch) {
             var target = touch.target;
@@ -110,7 +111,6 @@
         //To be implemented
     }
 
-    
     $.fn.intelliswipe = function (options) {
         var def = {
             'right-function': deleteButton
