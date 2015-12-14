@@ -2,11 +2,11 @@
     var deleteLi = function (element) {
         $(element).remove();
     }
-    var highlight = function(element) {
+    var highlight = function (element) {
         $(element).css('background-color', 'yellow');
     }
 
-    var consolePrint = function(value) {
+    var consolePrint = function (value) {
         $("#console").append(value);
     }
 
@@ -14,7 +14,7 @@
         $.each(event.changedTouches, function (index, touch) {
             var target = touch.target;
             while (!$(target).is("li")) {
-                target = $(target).parent()[0]
+                target = $(target).parent()[0];
             }
             if (target.movingBox) {
                 target.movingBox.offset({
@@ -22,11 +22,8 @@
                 });
                 target.lastOffSetX = touch.pageX - target.deltaX
             }
-            
         });
-        event.preventDefault();
     }
-
     
     var endSlide = function (event) {
         $.each(event.changedTouches, function (index, touch) {
@@ -38,28 +35,25 @@
             var lastPos = target.lastOffSetX;
             var LEFT_BUTTON_WIDTH = $(".left-button").width();
             var RIGHT_BUTTON_WIDTH = $(".left-button").width();
-            var smallDrag = Math.abs((lastPos - startingPos)) < 100
+            var smallDrag = Math.abs((lastPos - startingPos)) < 100;
+            var leftPos = lastPos;
 
             if (target.movingBox) {
                 if (smallDrag) {
-                    target.movingBox.offset({
-                        left: startingPos
-                    }); 
+                    leftPos = startingPos;
                 } else {
                     if (startingPos < lastPos) {
-                        target.movingBox.offset({
-                            left: (startingPos + LEFT_BUTTON_WIDTH)
-                        });
-                        target.stackedOut = true;
+                        leftPos = startingPos + LEFT_BUTTON_WIDTH;
                     } else if (startingPos > lastPos) {
-                        target.movingBox.offset({
-                            left: (startingPos - RIGHT_BUTTON_WIDTH)
-                        }); 
-                        target.stackedOut = true;
+                        leftPos = startingPos - RIGHT_BUTTON_WIDTH;
                     }
-                }   
-                target.movingBox = null;
+                    target.stackedOut = true;
+                }
             }
+            target.movingBox.offset({
+                left: leftPos
+            });            
+            target.movingBox = null;
         });
     } 
 
@@ -72,7 +66,6 @@
             }
             var jThis = $(target),
                 startOffset = jThis.offset();
-
             target.startingPosition = offset.left - $(".left-button").width();
             target.movingBox = jThis;
             target.stackedOut = false;
@@ -81,14 +74,14 @@
         event.stopPropagation();
     }
 
-    var appendRightButton = function(element) {
+    var appendRightButton = function (element) {
         var listItem = $(element);
         listItem.prepend("<div class='right-button'> </div> ");
         var rightButton = listItem.find(".right-button");  
         rightFunction(rightButton, listItem);              
     }
 
-    var appendLeftButton = function(element) {
+    var appendLeftButton = function (element) {
         var listItem = $(element);
         listItem.prepend("<div class='left-button'> </div> ");
         var leftButton = listItem.find(".left-button");  
@@ -99,7 +92,7 @@
     var rightFunction;
     var leftFunction;
 
-    var deleteButton = function(buttonSide, listItem) {
+    var deleteButton = function (buttonSide, listItem) {
         buttonSide.click(function () {
             deleteLi(listItem);
         });
@@ -113,7 +106,7 @@
         $(".left-button").text("Highlight Me(forever)");
     }
 
-    var saveButton = function() {
+    var saveButton = function () {
         //To be implemented
     }
 
@@ -138,7 +131,6 @@
             element.addEventListener("touchend", endSlide, false);
 
         });
-
         $('#list-container').scrollLeft($(".left-button").width());   
     };
 }(jQuery));
