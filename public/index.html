@@ -2,253 +2,42 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title> Tweet Disctrict </title>
+    <title> Welcome to Tweet District </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tweet District">
-
     <link rel="shortcut icon" href="images/taskIcon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="css/custom.css">
-    <link rel="stylesheet" type="text/css" href="css/intelliswipe.css">
-
+    <link rel="stylesheet" href="css/loginCustom.css">
   </head>
 
   <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>   
+    <div class="homepage-hero-module">
+      <div class="video-container">
+        <div class="title-container">
+          <div class="headline">
+            <h1>Welcome to Tweet District</h1>
+          </div>
+          <div class="description">
+            <div class="inner">Your one-stop shop to finding parties, bars, events and jobs in your neighborhood.</div>
+          </div>
 
-          <a href="#" class="pull-left"><img class ="navbar-brand-img" src="images/brand.png"></a>
-
-        </div> <!-- end header -->
-        <div class="collapse navbar-collapse " id="navbar-collapse"> 
-          <ul class="nav navbar-nav">
-            <li> <a href="#tweetsAroundMe">Show Tweets</a> </li>
-            <li> <a href="#tweetCategories">Show Categories</a> </li>
-            <li> <a href="#tweetsTrending">Show Trending</a> </li>
-            <li> <a href="#FAQ">FAQ</a> </li>
-            <li> <a href="mailto:victor@blindfoldprod.com" id="feedback"> Leave Feedback </a> </li>
-          </ul>
+          <div class="loginOrSkip">
+            <button type="button" class="btn btn-default">Login with Twitter</button><br>
+            <a href="index2.html" id="noLogin"> Continue without logging in </a>
+          </div>
+        </div>
+        <div class="filter"></div>
+        <video autoplay loop class="fillWidth">
+          <source src="http://dfcb.github.io/BigVideo.js/vids/dock.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.</video>
+        <div class="poster hidden">
+          <img src="http://www.videojs.com/img/poster.jpg" alt="">
         </div>
       </div>
-    </nav>
-    <!-- END Navbar -->
-
-    <div class="jumbotron">
-      <div class="jumbotron-overlay"> </div>
-      <div class="container text-center">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 col-xs-12">
-            <p><h5>"Who says you gotta look up while you walk?"</h5></p>
-            <h1>Stay Connected...</h1>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-8 col-md-10 col-xs-12">
-            <h4>Know <b>who's tweeting about what</b> just feet away from you. With Tweet District, you can instantly
-              see tweets around you, or at any geographical location of your choosing! </h4>
-          </div>
-        </div>
-
-        <div class="btn-group text-center">
-          <a href="#tweetsAroundMe" class="btn btn-lg btn-primary"> SEARCH TWEETS! </a>
-          <a href="#FAQ" class="btn btn-lg btn-primary"> FAQ </a>
-        </div>
-      </div> 
     </div>
-    <!-- END JUMBOtron -->
-
-    <div class="container" id="tweetsAroundMe"> 
-      <div class="panel tweetsIntroP">
-        <p class="tweetHeader">Search for Tweets </p>
-        <p class="tweetTagline"> Go ahead, discover around you! </p>
-      </div>
-    </div> <!-- end tweet search header -->
-
-    <div class="container">      
-      <div class="panel groupInputTweets"> 
-        <p class="tweetSearchIntroParagraph"> Below is a stream of all tweets from the location of your choosing. Please
-          enter any location on the planet, an optional search word, and a radius! </p> 
-
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-xs-6 col-sm-3">
-            <label for="location" class="control-label"> Location </label>
-            <input type="text" class="form-control" id="locationSearch" placeholder="i.e. Staples Center">
-          </div>
-          <div class="col-lg-3 col-md-3 col-xs-6 col-sm-3">
-            <label for="searchword" class="control-label"> Searchword (Optional) </label>
-              <input type="text" class="form-control" id="searchme" placeholder="i.e. party">
-          </div>
-          <div class="col-lg-3 col-md-3 col-xs-6 col-sm-3">
-            <div class="form-group">
-              <label for="sel1">Radius</label>
-              <select class="form-control" id="searchRadius">
-                <option value="1mi">1 Mile</option>
-                <option value="5mi">5 Miles</option>
-                <option value="10mi">10 Miles</option>
-                <option value="25mi">25 Miles</option>
-                <option value="50mi">50 Miles</option>
-                <option value="100mi">100 Miles</option>
-              </select>
-            </div>
-          </div> 
-          <div class="col-lg-3 col-md-3 col-xs-6 col-sm-3">
-            <button id="search-button" class="btn btn-primary">Find Tweets!</button>
-          </div> 
-          <p id="testingMe"> </p>
-        </div>
-
-
-        <div class="row row-custom" >
-          <div class="col-lg-11 col-md-3 col-xs-9 col-sm-3">
-            <input type="checkbox" id="geoCheckBox">  Use Current Location</class>
-            <a href="#FAQ"> Help </a>
-          </div> 
-        </div>
-      </div> <!-- END PANEL FOR SEARCH WORDS -->
-      <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-          <div class="panel no-overflow">
-            <p id="fromTweets"> </p>
-            <div class="panel tweet-inputs" id="tweetClear"> 
-              <p> <strong>Tweets will appear here (Scrolling enabled)</strong> <br>1) Type in a location, or click on 
-                "Use Current Location". <br> 2) Enter an optional keyword, and a radius (defaults to 1 mile). 
-                <br>3) Click Find Tweets!</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-          <div class="panel panel-default">
-            <div id="map-canvas"></div>
-          </div>
-        </div>
-      </div> <!-- end row for panel and help -->
-    </div> <!-- End Container -->
-
-    <div class="container" > 
-      <div class="page-header" id="tweetCategories" >
-        <h2> Search for Categories <small> Go ahead, discover some sweet users! </small> </h2>
-      </div>
-
-      <p> Below is a list of all users that are suggested under specific categories. Pick a category you love!</p>
-
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-xs-9 col-sm-9">
-          <div class="form-group">
-            <label for="sel1">Pick me!</label>
-            <select class="form-control" id="categorySearch">
-              <option>Pick a category</option>
-              <option value="books">Books</option>
-              <option value="business">Business</option>
-              <option value="government">Government</option>
-              <option value="news">News</option>
-              <option value="sports">Sports</option>
-              <option value="television">Television</option>
-            </select>
-          </div>
-
-          <p><button id="search-button-slug" class="btn btn-primary">Show me!</button></p>
-        </div>
-      </div>
-
-      <div id="list-container">
-        <ul id="item-list"> </ul>
-        <p id="fromCategories"> Trending Tweets will Appear here</p>
-      </div>
-    </div> <!-- End Container -->
-
-    <div class="container">
-      <div class="page-header" id="tweetsTrending">
-        <h2> Search for Trending Tweets <small> Go ahead, see what's trending worldwide. </small> </h2>
-      </div>
-
-      <p> If you click on this magical button, you will see the top trending tweets and see what's buzzing. 
-        (If trending topics don't appear, the limit has been exceeded. Please wait a few minutes)</p>
-      
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-xs-9 col-sm-9">
-          <div class="form-group">
-            <label for="trendingTopics">Trending Topics</label>
-            <select class="form-control" id="trendingSearch">
-              <option>Choose a Location</option>
-              <option value="1">Worldwide</option>
-              <option value="2442047">Los Angeles</option>
-              <option value="3534">Montreal</option>
-              <option value="2459115">New York City</option>
-              <option value="615702">Paris</option>
-              <option value="2123260">Saint-Petersburg</option>
-            </select>
-          </div>
-          <p><button id="search-button-trending" class="btn btn-primary">Find Trending Tweets!</button></p>
-        </div>
-      </div>
-
-      <div class="panel no-overflow">
-        <p id="fromTrending">Trending topics will Appear here</p>
-      </div>
-    </div> <!-- End Container -->
-
-
-    <div class="container">
-
-      <div class="page-header" id="FAQ">
-        <h2> FAQ </h2>
-      </div>
-
-      <div class="panel-group" id="accordion">
-      <div class="faqHeader">General</div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Our 
-              Purpose?</a>
-          </h4>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
-          <div class="panel-body">
-            We want to connect the world, and allow communities to come closer together through our searches. 
-              Know which businesses are having local sales, discover local parties, events, jobs, and so much more!
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">
-              What can we use Tweet District for?</a>
-          </h4>
-        </div>
-        <div id="collapseTen" class="panel-collapse collapse">
-          <div class="panel-body">
-            <ul>
-              <li> New to the neighborhood or want to know what's going on tonight? Just search for <strong>party
-                </strong>, <strong> afterhours</strong>, or <strong>bar</strong> within a small radius of your 
-                  current location and you'll see which bars are hopping or what college parties are around you.</li> 
-              <li>Are you an artists? See who's talking about you, to help you decide on your next venue. </li>
-              <li>Find local deals that are advertised on Twitter by searching <strong>sales</strong> or 
-                <strong> promo </strong> </li>
-              <li>Find a job by searching <strong>hiring</strong> </li>
-              <li>Looking to network? search <strong> happy hour </strong>, <strong>redcarpet </strong>, 
-                <strong>wrap party </strong> or any other niche searchword for your industry.
-            </ul>
-          </div>
-        </div>
-      </div>
 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="js/tweetDistrict.js">  </script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyAtMZjxFgkMSz
-      O5QGCJNIBxVBiMVjw9oKk"> </script>
-    <script src="js/intelliswipe.js"> </script>
+    <script src="js/login.js"> </script>
   </body>
 </html>
